@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #faf7f4;
+            --accent-rose: #d4959c;
+            --accent-deep: #8b5a5f;
+            --text-dark: #3a2e2e;
+            --cream: #f5ebe0;
+            --gold: #c9a68a;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #f0e8e1 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Floating hearts background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.15;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: fadeInScale 1.2s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--accent-rose);
+            font-style: italic;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Apology Letter Section */
+        .apology-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px auto;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(139, 90, 95, 0.1);
+            border: 2px solid rgba(212, 149, 156, 0.2);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .apology-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-deep);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .apology-section p {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .apology-section .signature {
+            text-align: right;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            color: var(--accent-rose);
+            font-style: italic;
+        }
+
+        /* What Makes Her Special Section */
+        .special-section {
+            background: linear-gradient(135deg, rgba(212, 149, 156, 0.15) 0%, rgba(201, 166, 138, 0.15) 100%);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px auto;
+            max-width: 900px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .special-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-deep);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .quality-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--accent-rose);
+        }
+
+        .quality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 90, 95, 0.15);
+        }
+
+        .quality-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .quality-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent-deep);
+            margin-bottom: 15px;
+        }
+
+        .quality-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Photo Gallery Section */
+        .gallery-section {
+            margin: 80px auto;
+            max-width: 1100px;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-deep);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: linear-gradient(135deg, var(--accent-rose), var(--gold));
+            aspect-ratio: 4/3;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 25px 60px rgba(139, 90, 95, 0.25);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px 20px 15px;
+            font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+        /* Promise Section */
+        .promise-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(139, 90, 95, 0.15);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .promise-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--accent-deep);
+            margin-bottom: 30px;
+        }
+
+        .promise-section p {
+            font-size: 1.4rem;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .apology-section, .special-section, .promise-section {
+                padding: 40px 25px;
+                margin: 40px 20px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>I'm Sorry Cheeks..</h1>
+            <p>For the mistakes I made and the hurt I caused</p>
+        </div>
+
+        <!-- Apology Letter -->
+        <section class="apology-section">
+            <h2>My Heartfelt Apology</h2>
+            <p>
+                My dearest love, I know that words can never fully undo the hurt I've caused you, but I need you to know how deeply sorry I am. I've replayed our moments together, and I realize how my actions fell short of the love and respect you deserve.
+            </p>
+            <p>
+                You mean everything to me, and seeing the pain in your eyes breaks my heart. I was thoughtless, and I take full responsibility for my mistake. You deserve someone who cherishes every moment with you, who thinks before they act, and who puts your happiness first.
+            </p>
+            <p>
+                I promise to learn from this, to grow, and to become the partner you deserve. Please give me the chance to make things right, to show you through my actions—not just my words—how much you mean to me.
+            </p>
+            <p>
+                I love you more than I can express, and I'm truly, deeply sorry.
+            </p>
+            <div class="signature">Forever yours Cheekuu ❤️</div>
+        </section>
+
+        <!-- What Makes Her Special -->
+        <section class="special-section">
+            <h2>What Makes You Absolutely Special</h2>
+            <div class="qualities-grid">
+                <div class="quality-card">
+                    <div class="icon">✨</div>
+                    <h3>Your Beautiful Soul</h3>
+                    <p>Your kindness and compassion light up every room you enter. You make the world a better place just by being in it.</p>
+                </div>
+                <div class="quality-card">
+                    <div class="icon">💫</div>
+                    <h3>Your Smile</h3>
+                    <p>That smile of yours can turn my worst day into the best one. It's the sunshine that brightens my life.</p>
+                </div>
+                <div class="quality-card">
+                    <div class="icon">🌸</div>
+                    <h3>Your Strength</h3>
+                    <p>You face challenges with grace and courage. Your resilience inspires me to be better every single day.</p>
+                </div>
+                <div class="quality-card">
+                    <div class="icon">💝</div>
+                    <h3>Your Loving Heart</h3>
+                    <p>The way you love—so deeply, so purely—is a gift I'm grateful for every moment. You've taught me what true love means.</p>
+                </div>
+                <div class="quality-card">
+                    <div class="icon">🌟</div>
+                    <h3>Your Intelligence</h3>
+                    <p>Our conversations challenge me, inspire me, and make me see the world differently. Your mind is beautiful.</p>
+                </div>
+                <div class="quality-card">
+                    <div class="icon">🎨</div>
+                    <h3>Your Uniqueness</h3>
+                    <p>There's nobody else like you in this world. Every little convo, every laugh, every moment with you is precious and irreplaceable.</p>
+                </div>
+            </div>
+        </section>
+         <!-- Photo Gallery -->
+        <section class="gallery-section">
+            <h2>Our Beautiful Memorie</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+    <img src="pic5.jpg" alt="Our memory">
+    <div class="photo-caption">That unforgettable day we spent together.</div>
+</div>
+            </div>
+        </section>
+
+        <!-- Promise Section -->
+        <section class="promise-section">
+            <h2>My Promise to You</h2>
+            <p>
+                I promise to treasure you, to listen better, to think before I act, and to never take your love for granted.
+            </p>
+            <p>
+                I promise to be patient, understanding, and to always choose us over my ego.
+            </p>
+            <p>
+                Most importantly, I promise to show you every single day how much you mean to me.
+            </p>
+            <p style="font-size: 2rem; color: var(--accent-rose); margin-top: 40px;">
+                I love you ❤️
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartSymbols = ['❤️', '💕', '💖', '💗', '💓'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 20000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.quality-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
